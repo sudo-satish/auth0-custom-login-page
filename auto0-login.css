@@ -1,0 +1,270 @@
+*,
+::before,
+::after {
+  margin: unset;
+  padding: unset;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+button,
+submit {
+  border: none;
+}
+button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+.app {
+  padding: 2rem;
+  height: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #000341 0%, #003380 100%),
+    linear-gradient(180deg, #00011b 0%, #0c1b31 100%);
+}
+
+
+.main {
+  margin-top: 4rem;
+}
+
+
+
+.title {
+  width: 95px;
+  height: 34px;
+  left: 28px;
+  top: 127px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 34px;
+  text-transform: capitalize;
+  color: #ffffff;
+}
+
+.subtitle {
+  width: 203px;
+  height: 20px;
+  left: 28px;
+  top: 164px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #ffffff;
+}
+
+.social-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.rario-btn {
+  width: 150px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000c3b;
+  border-radius: 3.98152px;
+  padding: 1rem 2.5rem;
+}
+
+.rario-btn-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  margin-left: 1rem;
+  line-height: 15px;
+  /* identical to box height */
+  color: #ffffff;
+}
+
+.form-wrapper {
+  margin-top: 2rem;
+}
+
+.rario-form-control-input {
+  width: 100%;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+  padding: 0.5rem 0rem;
+  background: transparent;
+  border-bottom: 2px solid #ffffff;
+  /* margin: 1rem 0rem; */
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+
+  opacity: 0.4;
+}
+
+.rario-form-control-input:focus {
+  outline: none;
+  opacity: 1;
+}
+
+.rario-form-control {
+  opacity: 0.4;
+}
+.rario-form-control:focus-within {
+  opacity: 1;
+}
+
+.input-label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+.forgot-password {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+.submit-button-wrapper {
+  margin-top: 3rem;
+}
+
+.submit-button {
+  background: #ffffff;
+  padding: 1rem;
+  width: 100%;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+
+  text-transform: capitalize;
+  color: #000000;
+  cursor: pointer;
+}
+
+.signup {
+  margin-top: 2rem;
+}
+
+.signup-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+.signup-link {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+  text-decoration-line: underline;
+
+  color: #ffffff;
+}
+
+.signup,
+.forgot-password {
+  cursor: pointer;
+}
+
+#error-message {
+  display: none;
+  white-space: break-spaces;
+}
+
+.bg-blue {
+    background: linear-gradient(
+180deg
+, #000341 0%, #003380 100%),linear-gradient(
+180deg
+, #00011B 0%, #0C1B31 100%);
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    background-image: url(rario-bg.png);
+    background-repeat: repeat;
+    -webkit-background-position: bottom;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.title-container, .form-section {
+  padding: 1rem;
+}
+.banner-section {
+  display: none;;
+}
+
+
+/*
+ Responsive CSS for small screen 
+*/
+
+@media (min-width: 640px) {
+  .main {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .social-button-wrapper {
+    margin-top: 0px;
+  }
+
+  .banner-section {
+    display: block;;
+  }
+}
+
+/*
+ Responsive CSS for md screen 
+*/
+@media (min-width: 768px) {
+  
+}
+
+/*
+ Responsive CSS for large screen 
+*/
+@media (min-width: 1024px) {
+  
+}

@@ -1,0 +1,21 @@
+{
+  "name": "parcel-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "auth0-login.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel auth0-login.html",
+    "build": "parcel build auth0-login.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
