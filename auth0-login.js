@@ -5,47 +5,53 @@ import fbIcon from "./fbIcon.svg";
 import googleIcon from "./googleIcon.svg";
 import "./auto0-login.css";
 
-// var config = JSON.parse(
-//   decodeURIComponent(escape(window.atob('@@config@@')))
-// );
+var config = JSON.parse(
+  decodeURIComponent(escape(window.atob('@@config@@')))
+);
 
-// var leeway = config.internalOptions.leeway;
-// if (leeway) {
-//   var convertedLeeway = parseInt(leeway);
+var leeway = config.internalOptions.leeway;
+if (leeway) {
+  var convertedLeeway = parseInt(leeway);
 
-//   if (!isNaN(convertedLeeway)) {
-//     config.internalOptions.leeway = convertedLeeway;
-//   }
-// }
+  if (!isNaN(convertedLeeway)) {
+    config.internalOptions.leeway = convertedLeeway;
+  }
+}
 
-// var params = Object.assign({
-//   overrides: {
-//     __tenant: config.auth0Tenant,
-//     __token_issuer: config.authorizationServer.issuer
-//   },
-//   domain: config.auth0Domain,
-//   clientID: config.clientID,
-//   redirectUri: config.callbackURL,
-//   responseType: 'code'
-// }, config.internalOptions);
+var params = Object.assign({
+  overrides: {
+    __tenant: config.auth0Tenant,
+    __token_issuer: config.authorizationServer.issuer
+  },
+  domain: config.auth0Domain,
+  clientID: config.clientID,
+  redirectUri: config.callbackURL,
+  responseType: 'code'
+}, config.internalOptions);
 
-// var webAuth = new auth0.WebAuth(params);
-// var databaseConnection = 'Username-Password-Authentication';
+var webAuth = new auth0.WebAuth(params);
+var databaseConnection = 'Username-Password-Authentication';
 
 const MainComponent = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [captcha, setCaptcha] = useState();
+  const [isForgotPassword, setIsForgotPassword] = useState(false); 
 
   useEffect(() => {
-    // setCaptcha(webAuth.renderCaptcha(
-    //   window.document.querySelector('.captcha-container')
-    // ));
+    setCaptcha(webAuth.renderCaptcha(
+      window.document.querySelector('.captcha-container')
+    ));
   }, []);
 
   const displayError = (err) => {
     captcha.reload();
     var errorMessage = document.getElementById("error-message");
     errorMessage.innerHTML = err.policy || err.description;
+    errorMessage.style.display = "block";
+  };
+  const displaySuccessMessage = (message) => {
+    var errorMessage = document.getElementById("success-message");
+    errorMessage.innerHTML = message;
     errorMessage.style.display = "block";
   };
 
@@ -95,16 +101,40 @@ const MainComponent = () => {
 
   const loginOrSignup = (e) => {
     e.preventDefault();
-    var button = document.getElementById("rario-btn-login");
+    if (isForgotPassword) {
+      onForgotPassword();
+    } else {
+
+      var button = document.getElementById("rario-btn-login");
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      isSignup
+        ? signup(button, {
+            email,
+            password,
+            username: document.getElementById("username").value,
+          })
+        : login(button, { username: email, password });
+    }
+  };
+
+  const onForgotPassword = () => {
     var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-    isSignup
-      ? signup(button, {
-          email,
-          password,
-          username: document.getElementById("username").value,
-        })
-      : login(button, { username: email, password });
+    webAuth.changePassword(
+      {
+        connection: databaseConnection,
+        email,
+      },
+      function (err, resp) {
+        if (err) {
+          displayError(err);
+        } else {
+          displaySuccessMessage(
+            "We have sent you an email to reset your password"
+          );
+        }
+      }
+    );
   };
   return (
     <div className="main">
@@ -114,100 +144,148 @@ const MainComponent = () => {
           <div className="subtitle">Collect Cricketing History</div>
         </div>
 
-        <div className="banner-section">
-          asfadf
-        </div>
+        <div className="banner-section"></div>
       </div>
 
-      <div className="col form-section">
-        <div className="social-button-wrapper">
-          <button
-            type="button"
-            onClick={loginWithGoogle}
-            id="rario-btn-google"
-            className="rario-btn"
-          >
-            <img src={googleIcon} />
-            <span className="rario-btn-text">Google</span>
-          </button>
+      {!isForgotPassword && (
+        <div className="col form-section">
+          <div className="social-button-wrapper">
+            <button
+              type="button"
+              onClick={loginWithGoogle}
+              id="rario-btn-google"
+              className="rario-btn"
+            >
+              <img src={googleIcon} />
+              <span className="rario-btn-text">Google</span>
+            </button>
 
-          <button type="button" id="rario-btn-google" className="rario-btn">
-            <img src={fbIcon} />
-            <span className="rario-btn-text">Facebook</span>
-          </button>
-        </div>
-        <div id="error-message" className="alert alert-danger"></div>
-        <div className="form-wrapper">
-          <form onSubmit={loginOrSignup}>
-            <div className="rario-form-control">
-              <label htmlFor="email" className="input-label">
-                {isSignup ? "Email" : "Email or username"}
-              </label>
-              <input
-                name="email"
-                id="email"
-                type="text"
-                className="rario-form-control-input"
-                placeholder={isSignup ? "Email" : "Email or username"}
-              />
-            </div>
-            {isSignup && (
+            <button type="button" id="rario-btn-google" className="rario-btn">
+              <img src={fbIcon} />
+              <span className="rario-btn-text">Facebook</span>
+            </button>
+          </div>
+          <div id="error-message" className="alert alert-danger"></div>
+          <div className="form-wrapper">
+            <form onSubmit={loginOrSignup}>
               <div className="rario-form-control">
-                <label htmlFor="username" className="input-label">
-                  Username
+                <label htmlFor="email" className="input-label">
+                  {isSignup ? "Email" : "Email or username"}
                 </label>
                 <input
-                  name="username"
-                  id="username"
+                  name="email"
+                  id="email"
                   type="text"
                   className="rario-form-control-input"
-                  placeholder="Username"
+                  placeholder={isSignup ? "Email" : "Email or username"}
                 />
               </div>
-            )}
-            <div className="rario-form-control">
-              <label htmlFor="password" className="input-label">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className="rario-form-control-input"
-                placeholder="Password"
-              />
-            </div>
-            <div className="captcha-container"></div>
+              {isSignup && (
+                <div className="rario-form-control">
+                  <label htmlFor="username" className="input-label">
+                    Username
+                  </label>
+                  <input
+                    name="username"
+                    id="username"
+                    type="text"
+                    className="rario-form-control-input"
+                    placeholder="Username"
+                  />
+                </div>
+              )}
+              <div className="rario-form-control">
+                <label htmlFor="password" className="input-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  className="rario-form-control-input"
+                  placeholder="Password"
+                />
+              </div>
+              <div className="captcha-container"></div>
 
-            <div className="forgot-password">Don't remember your password?</div>
-
-            <div className="submit-button-wrapper">
-              <button
-                type="submit"
-                id="rario-btn-login"
-                className="submit-button"
+              <div
+                className="forgot-password"
+                onClick={() => {
+                  setIsForgotPassword(true);
+                }}
               >
-                {isSignup ? "SIGNUP" : "LOGIN"}
-              </button>
-            </div>
-          </form>
-        </div>
+                Don't remember your password?
+              </div>
 
-        <div className="signup">
-          <div className="signup-text">Do not have an account?</div>
-          <div className="signup-link">
-            <a
-              id="rario-btn-signup"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsSignup(!isSignup);
-              }}
-            >
-              {isSignup ? "Login Here" : "Signup here"}
-            </a>
+              <div className="submit-button-wrapper">
+                <button
+                  type="submit"
+                  id="rario-btn-login"
+                  className="submit-button"
+                >
+                  {isSignup ? "SIGNUP" : "LOGIN"}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="signup">
+            <div className="signup-text">Do not have an account?</div>
+            <div className="signup-link">
+              <a
+                id="rario-btn-signup"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsSignup(!isSignup);
+                }}
+              >
+                {isSignup ? "Login Here" : "Signup here"}
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+      {isForgotPassword && (
+        <div className="col form-section">
+          <div id="error-message" className="alert alert-danger"></div>
+          <div id="success-message" className="alert alert-danger"></div>
+          <div className="form-wrapper">
+            <form onSubmit={loginOrSignup}>
+              <div className="rario-form-control">
+                <label htmlFor="email" className="input-label">
+                  Email
+                </label>
+                <input
+                  name="email"
+                  id="email"
+                  type="text"
+                  className="rario-form-control-input"
+                  placeholder="Email"
+                />
+              </div>
+              <div className="captcha-container"></div>
+              <div
+                className="forgot-password"
+                onClick={() => {
+                  setIsForgotPassword(false);
+                }}
+              >
+                Login here
+              </div>
+
+              <div className="submit-button-wrapper">
+                <button
+                  type="submit"
+                  id="rario-btn-login"
+                  className="submit-button"
+                >
+                  Send verification Link
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

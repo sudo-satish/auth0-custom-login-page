@@ -210,7 +210,7 @@ button:focus {
 }
 
 .bg-blue {
-    background: linear-gradient(
+    background-color: linear-gradient(
 180deg
 , #000341 0%, #003380 100%),linear-gradient(
 180deg
@@ -233,6 +233,10 @@ button:focus {
 }
 .banner-section {
   display: none;;
+}
+
+.alert {
+  color: white;
 }
 
 
