@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import authImg from './auth-img.png'
 import "./auto0-login.css";
 
 var config = JSON.parse(
@@ -153,7 +152,10 @@ const MainComponent = () => {
             </div>
 
             <div className="banner-section">
-              <img src={authImg} alt="banner-img" />
+              <img
+                src="https://s3.ap-south-1.amazonaws.com/www.rario.com/assets/images/auth-img.9d867bd2.png"
+                alt="banner-img"
+              />
             </div>
           </div>
 
@@ -189,12 +191,7 @@ const MainComponent = () => {
               <div className="form-wrapper">
                 <form onSubmit={loginOrSignup} autoComplete="off">
                   <div class="group">
-                    <input
-                      name="email"
-                      id="email"
-                      type="text"
-                      required
-                    />
+                    <input name="email" id="email" type="text" required />
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label htmlFor="email" className="input-label">
@@ -339,7 +336,8 @@ const Header = () => (
   <header className="header">
     <div className="container">
     <div className="log">
-      <svg
+      <a href="https://thor-git-release-beta-rario-com.vercel.app/">
+        <svg
         className="rarioLogo"
         width="131"
         height="24"
@@ -400,6 +398,7 @@ const Header = () => (
           </radialGradient>
         </defs>
       </svg>
+      </a>
     </div>
     </div>
   </header>

@@ -5,8 +5,10 @@
   "main": "auth0-login.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel auth0-login.html",
-    "build": "parcel build auth0-login.html"
+    "dev": "parcel login/auth0-login.html",
+    "build": "parcel build login/auth0-login.html --out-dir dist/login",
+    "dev-reset": "parcel reset/auth0-reset.html",
+    "build-reset": "parcel build reset/auth0-reset.html --out-dir dist/reset"
   },
   "keywords": [],
   "author": "",
