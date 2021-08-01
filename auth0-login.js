@@ -1,47 +1,45 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-
-import fbIcon from "./fbIcon.svg";
-import googleIcon from "./googleIcon.svg";
+import authImg from './auth-img.png'
 import "./auto0-login.css";
 
-var config = JSON.parse(
-  decodeURIComponent(escape(window.atob('@@config@@')))
-);
+// var config = JSON.parse(
+//   decodeURIComponent(escape(window.atob('@@config@@')))
+// );
 
-var leeway = config.internalOptions.leeway;
-if (leeway) {
-  var convertedLeeway = parseInt(leeway);
+// var leeway = config.internalOptions.leeway;
+// if (leeway) {
+//   var convertedLeeway = parseInt(leeway);
 
-  if (!isNaN(convertedLeeway)) {
-    config.internalOptions.leeway = convertedLeeway;
-  }
-}
+//   if (!isNaN(convertedLeeway)) {
+//     config.internalOptions.leeway = convertedLeeway;
+//   }
+// }
 
-var params = Object.assign({
-  overrides: {
-    __tenant: config.auth0Tenant,
-    __token_issuer: config.authorizationServer.issuer
-  },
-  domain: config.auth0Domain,
-  clientID: config.clientID,
-  redirectUri: config.callbackURL,
-  responseType: 'code'
-}, config.internalOptions);
+// var params = Object.assign({
+//   overrides: {
+//     __tenant: config.auth0Tenant,
+//     __token_issuer: config.authorizationServer.issuer
+//   },
+//   domain: config.auth0Domain,
+//   clientID: config.clientID,
+//   redirectUri: config.callbackURL,
+//   responseType: 'code'
+// }, config.internalOptions);
 
-var webAuth = new auth0.WebAuth(params);
-var databaseConnection = 'Username-Password-Authentication';
+// var webAuth = new auth0.WebAuth(params);
+// var databaseConnection = 'Username-Password-Authentication';
 
 const MainComponent = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [captcha, setCaptcha] = useState();
   const [isForgotPassword, setIsForgotPassword] = useState(false); 
 
-  useEffect(() => {
-    setCaptcha(webAuth.renderCaptcha(
-      window.document.querySelector('.captcha-container')
-    ));
-  }, []);
+  // useEffect(() => {
+  //   setCaptcha(webAuth.renderCaptcha(
+  //     window.document.querySelector('.captcha-container')
+  //   ));
+  // }, []);
 
   const displayError = (err) => {
     captcha.reload();
@@ -138,13 +136,17 @@ const MainComponent = () => {
   };
   return (
     <div className="main">
+      <div className="container">
+      <div className="row"> 
       <div className="col title-section">
         <div className="title-container">
-          <div className="title">{isSignup ? "SIGNUP" : "LOGIN"}</div>
+          <div className="title">{isForgotPassword ? 'FORGOT PASSWORD' : isSignup ? "SIGNUP" : "LOGIN"}</div>
           <div className="subtitle">Collect Cricketing History</div>
         </div>
 
-        <div className="banner-section"></div>
+        <div className="banner-section">
+          <img src={authImg} alt="banner-img"/>
+        </div>
       </div>
 
       {!isForgotPassword && (
@@ -156,66 +158,81 @@ const MainComponent = () => {
               id="rario-btn-google"
               className="rario-btn"
             >
-              <img src={googleIcon} />
+              <img src="https://s3.ap-south-1.amazonaws.com/www.rario.com/assets/images/googleIcon.svg" alt="Google icon" />
               <span className="rario-btn-text">Google</span>
             </button>
 
             <button type="button" id="rario-btn-google" className="rario-btn">
-              <img src={fbIcon} />
+              <img src="https://s3.ap-south-1.amazonaws.com/www.rario.com/assets/images/fbIcon.svg" alt="fb-icon"/>
               <span className="rario-btn-text">Facebook</span>
             </button>
           </div>
           <div id="error-message" className="alert alert-danger"></div>
           <div className="form-wrapper">
             <form onSubmit={loginOrSignup}>
-              <div className="rario-form-control">
-                <label htmlFor="email" className="input-label">
-                  {isSignup ? "Email" : "Email or username"}
-                </label>
+              <div class="group">
                 <input
                   name="email"
                   id="email"
                   type="text"
-                  className="rario-form-control-input"
-                  placeholder={isSignup ? "Email" : "Email or username"}
+                  required
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label htmlFor="email" className="input-label">
+                  {isSignup ? "Email" : "Email or username"}
+                </label>
               </div>
               {isSignup && (
-                <div className="rario-form-control">
-                  <label htmlFor="username" className="input-label">
-                    Username
-                  </label>
+                <div class="group">
                   <input
                     name="username"
                     id="username"
                     type="text"
-                    className="rario-form-control-input"
-                    placeholder="Username"
+                    required
                   />
-                </div>
+                 <span class="highlight"></span>
+                 <span class="bar"></span>
+                 <label htmlFor="username" className="input-label">
+                    Username
+                  </label>
+               </div>
               )}
-              <div className="rario-form-control">
-                <label htmlFor="password" className="input-label">
-                  Password
-                </label>
+               <div class="group">
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  className="rario-form-control-input"
-                  placeholder="Password"
+                  required
                 />
-              </div>
+                 <span class="highlight"></span>
+                 <span class="bar"></span>
+                 <label htmlFor="password" className="input-label">
+                  Password
+                </label>
+               </div>
               <div className="captcha-container"></div>
 
-              <div
-                className="forgot-password"
-                onClick={() => {
-                  setIsForgotPassword(true);
-                }}
-              >
-                Don't remember your password?
-              </div>
+              {
+                !isSignup && (<div
+                  className="forgot-password"
+                  onClick={() => {
+                    setIsForgotPassword(true);
+                  }}
+                >
+                  Don't remember your password?
+                </div>)
+              }
+
+              {
+                isSignup && (
+                  <div className="terms">
+                    <input type="checkbox" id="terms-condition"/>
+                    <label for="terms-condition"> I  have read and agree to ICC RARIO’s  Terms of Service and Privacy Policy.</label>
+                  </div>
+                )
+
+              }
 
               <div className="submit-button-wrapper">
                 <button
@@ -230,7 +247,7 @@ const MainComponent = () => {
           </div>
 
           <div className="signup">
-            <div className="signup-text">Do not have an account?</div>
+            <div className="signup-text">{!isSignup ? "Do not have an account?" : "Already have an account?"}</div>
             <div className="signup-link">
               <a
                 id="rario-btn-signup"
@@ -251,27 +268,29 @@ const MainComponent = () => {
           <div id="success-message" className="alert alert-danger"></div>
           <div className="form-wrapper">
             <form onSubmit={loginOrSignup}>
-              <div className="rario-form-control">
-                <label htmlFor="email" className="input-label">
-                  Email
-                </label>
-                <input
-                  name="email"
-                  id="email"
-                  type="text"
-                  className="rario-form-control-input"
-                  placeholder="Email"
-                />
-              </div>
-              <div className="captcha-container"></div>
-              <div
+            <div
                 className="forgot-password"
                 onClick={() => {
                   setIsForgotPassword(false);
                 }}
               >
-                Login here
+                ← Back
               </div>
+              <div class="group">
+                <input
+                  name="email"
+                  id="email"
+                  type="text"
+                  required
+                />
+                 <span class="highlight"></span>
+                 <span class="bar"></span>
+                 <label htmlFor="email" className="input-label">
+                  Email
+                </label>
+               </div>
+              <div className="captcha-container"></div>
+             
 
               <div className="submit-button-wrapper">
                 <button
@@ -286,11 +305,14 @@ const MainComponent = () => {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </div> 
+  </div>
   );
 };
 const Header = () => (
   <header className="header">
+    <div className="container">
     <div className="log">
       <svg
         className="rarioLogo"
@@ -353,6 +375,7 @@ const Header = () => (
           </radialGradient>
         </defs>
       </svg>
+    </div>
     </div>
   </header>
 );
