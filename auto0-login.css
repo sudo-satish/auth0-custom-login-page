@@ -6,6 +6,21 @@
   padding: unset;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px #000E4F inset;
+  box-shadow:  0 0 0px 1000px #000E4F inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 a,
 a:hover,
 a:focus,
@@ -356,8 +371,19 @@ textarea {
 }
 
 #error-message {
+
+  background: #88210061;
+    line-height: 30px;
+    border: 1px solid #ffffff52;
+    margin-top: 3rem;
+    padding: 1rem;
   display: none;
   white-space: break-spaces;
+}
+
+.submit-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 body {
@@ -437,7 +463,8 @@ body {
 /*
  Responsive CSS for large screen 
 */
-@media (max-width: 1024px) {
+
+@media only screen and (min-width:768px) and (max-width:1024px) {
   .container {
     width: 90%;
   }
