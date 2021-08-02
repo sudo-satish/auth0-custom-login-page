@@ -406,6 +406,97 @@ body {
   color: white;
 }
 
+
+
+/**Reset password widget css*/
+
+#change-password-widget-container .auth0-lock.auth0-lock-opened-in-frame {
+  width: 100%;
+}
+
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-widget {
+  width: 100%;
+}
+
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-cred-pane {
+  background: transparent;
+}
+
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-wrap span {
+  display: none;
+}
+
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-wrap {
+  padding: 0;
+  background: transparent;
+  border: none;
+  position: relative;
+}
+
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-block {
+  margin-bottom: 2rem;
+}
+
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-wrap .auth0-lock-input {background-color: transparent;background: none;font-family: Montserrat;font-style: normal;font-weight: 400;color: #fff;font-size: 16px;line-height: 20px;padding: 10px 10px 10px 0;display: block;width: 100%;transition: border-color 5000s ease-in-out 0s;border-radius: 0;border: none;border-bottom: 1px solid hsla(0,0%,77.6%,.38823529411764707);}
+
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-content {
+  padding: 0;
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-form > p {
+  background: linear-gradient(270.52deg, #10FFC6 9.71%, #10FFFF 84.7%), linear-gradient(90.63deg, #FF2222 17.03%, #DC004F 79.39%);
+  box-shadow: 0px 0px 60px 10px rgba(255, 71, 71, 0.3);
+  text-align: left;
+  padding: 1rem;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25px;
+  color: #00011B;
+  margin-bottom: 3rem;
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-wrap .auth0-lock-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  text-transform: capitalize
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-wrap .auth0-lock-input::-moz-placeholder { /* Firefox 19+ */
+  text-transform: capitalize
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-wrap .auth0-lock-input:-ms-input-placeholder { /* IE 10+ */
+  text-transform: capitalize
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-wrap .auth0-lock-input:-moz-placeholder { /* Firefox 18- */
+text-transform: capitalize
+}
+
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-input-wrap .auth0-lock-input:focus {
+  border-bottom: 1px solid #fff;
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-submit {
+  margin-top: 3rem;
+  width: 50%;
+  background: #fff !important;
+  padding: 1rem;
+  width: 60%;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: capitalize;
+  color: #000;
+  cursor: pointer;
+  height: 58px;
+  border-radius: 0px;
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-submit span svg {
+  display: none;
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-submit span {
+  position: relative;
+}
+#change-password-widget-container .auth0-lock.auth0-lock .auth0-lock-submit span:after {content: "Continue";text-transform: uppercase;}
+div#change-password-widget-container {
+  margin: 0;
+}
+
 @media (max-width: 767px) {
   .container {
     width: 90%;
