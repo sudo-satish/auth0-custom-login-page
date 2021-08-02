@@ -270,7 +270,7 @@ const MainComponent = () => {
                 </form>
               </div>
 
-              <div className="signup">
+              {/* <div className="signup">
                 <div className="signup-text">
                   {!isSignup
                     ? "Do not have an account?"
@@ -287,7 +287,7 @@ const MainComponent = () => {
                     {isSignup ? "Login Here" : "Signup here"}
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
           {isForgotPassword && (
