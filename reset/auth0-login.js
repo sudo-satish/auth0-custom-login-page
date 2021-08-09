@@ -9,7 +9,7 @@ const configAuth0Reset = () => {
       csrf_token:        "{{csrf_token}}",
       ticket:            "{{ticket}}",
       password_policy:   "{{password_policy}}",
-      password_complexity_options:  JSON.parse('{{password_complexity_options}}'),
+      password_complexity_options:  '{{password_complexity_options}}',
       theme: {
         icon: "",
       },
@@ -39,7 +39,7 @@ const MainComponent = () => {
 
             <div className="banner-section">
               <img
-                src="https://s3.ap-south-1.amazonaws.com/www.rario.com/assets/images/auth-img.9d867bd2.png"
+                src="https://assets.rario.com/images/auth-img.9d867bd2.png"
                 alt="banner-img"
               />
             </div>
@@ -62,7 +62,7 @@ const Header = () => (
       <div
         className="log"
       >
-        <a href="https://thor-git-release-beta-rario-com.vercel.app/">
+        <a href="https://rario.com">
           <svg
             className="rarioLogo"
             width="131"

@@ -153,7 +153,7 @@ const MainComponent = () => {
 
             <div className="banner-section">
               <img
-                src="https://s3.ap-south-1.amazonaws.com/www.rario.com/assets/images/auth-img.9d867bd2.png"
+                src="https://assets.rario.com/images/auth-img.9d867bd2.png"
                 alt="banner-img"
               />
             </div>
@@ -169,7 +169,7 @@ const MainComponent = () => {
                   className="rario-btn"
                 >
                   <img
-                    src="https://s3.ap-south-1.amazonaws.com/www.rario.com/assets/images/googleIcon.svg"
+                    src="https://assets.rario.com/images/googleIcon.svg"
                     alt="Google icon"
                   />
                   <span className="rario-btn-text">Google</span>
@@ -181,7 +181,7 @@ const MainComponent = () => {
                   className="rario-btn"
                 >
                   <img
-                    src="https://s3.ap-south-1.amazonaws.com/www.rario.com/assets/images/fbIcon.svg"
+                    src="https://assets.rario.com/images/fbIcon.svg"
                     alt="fb-icon"
                   />
                   <span className="rario-btn-text">Facebook</span>
@@ -270,7 +270,7 @@ const MainComponent = () => {
                 </form>
               </div>
 
-              {/* <div className="signup">
+              <div className="signup">
                 <div className="signup-text">
                   {!isSignup
                     ? "Do not have an account?"
@@ -287,7 +287,7 @@ const MainComponent = () => {
                     {isSignup ? "Login Here" : "Signup here"}
                   </a>
                 </div>
-              </div> */}
+              </div>
             </div>
           )}
           {isForgotPassword && (
@@ -336,7 +336,7 @@ const Header = () => (
   <header className="header">
     <div className="container">
     <div className="log">
-      <a href="https://thor-git-release-beta-rario-com.vercel.app/">
+      <a href="https://rario.com">
         <svg
         className="rarioLogo"
         width="131"

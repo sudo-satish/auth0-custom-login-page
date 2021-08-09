@@ -139,6 +139,7 @@ textarea {
   top: 10px;
   transition: 300ms ease all;
 }
+
 .bar {
   position: relative;
   display: block;
@@ -391,7 +392,7 @@ textarea {
 
 body {
   background-color: #001356;
-  background-image: url("https://s3.ap-south-1.amazonaws.com/www.rario.com/assets/images/rario-bg.png");
+  background-image: url("https://assets.rario.com/images/rario-bg.png");
   background-size: cover;
   background-attachment: fixed;
   font-family: "Montserrat";
